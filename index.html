@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayıyı Tahmin Et</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Sayıyı Tahmin Et</h1>
+    <p>1 ile 100 arasında bir sayı tuttum</p>
+
+    <input type="number" id="guess" placeholder="Tahminin">
+    <button onclick="checkGuess()">Tahmin Et</button>
+
+    <p id="message"></p>
+    <p id="attempts"></p>
+
+    <script>
+        const secret = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = Number(document.getElementById("guess").value);
+            const message = document.getElementById("message");
+
+            attempts++;
+
+            if (guess > secret) {
+                message.textContent = "Fazla oldu";
+            }
+
+            if (guess < secret) {
+                message.textContent = "Daha yüksek";
+            }
+
+            if (guess === secret) {
+                message.textContent = "Tebrikler 🎉";
+                document.getElementById("attempts").textContent =
+                    "Deneme Sayısı: " + attempts;
+
+                document.getElementById("guess").disabled = true;
+            }
+        }
+    </script>
+
+</body>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
+
+
+
+
+</html>
